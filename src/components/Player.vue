@@ -1,7 +1,7 @@
 <template>
   <div class="player">
     <audio id="audio" :src='mp3Url' autoplay></audio>
-    <a class="mp3Pic" href="#"><img :src="mp3Pic"></a>
+    <a class="mp3Pic" href="#"><img :src="mp3Albumpic"></a>
     <div class="mp3Textbox">
       <p class="mp3Name">{{mp3Name}}</p>
       <p class="mp3Author">{{mp3Author}}</p>
@@ -26,7 +26,7 @@ export default {
       mp3Name: '',
       mp3Author: '',
       mp3Url: '',
-      mp3Pic: ''
+      mp3Albumpic: ''
     }
   },
   methods: {
@@ -43,21 +43,18 @@ export default {
         audio.pause()
         this.isPlaying = false
       }
-    },
-    refreshMp3 () {
-      let audio = document.getElementById('audio')
-      this.isPlaying = true
-      this.mp3Name = '给你们'
-      this.mp3Author = '张宇'
-      this.mp3Url = 'http://m2.music.126.net/Eg1Z0CQyrj-vT7wPr5QvmA==/6656443394636285.mp3'
-      this.mp3Pic = 'http://p3.music.126.net/otCQ-2wUgLaEN2_W8Nf_DA==/57174604656249.jpg'
-      audio.play()
     }
+  },
+  mounted () {
+    bus.$on('playMp3', data => {
+      this.isPlaying = true
+      this.mp3Name = bus.currentData.mp3Name
+      this.mp3Author = bus.currentData.mp3Author
+      this.mp3Url = bus.currentData.mp3Url
+      this.mp3Albumpic = bus.currentData.mp3Albumpic
+    })
   }
 }
-
-console.log(bus)
-// bus.$emit('playMp3')
 </script>
 
 <style>

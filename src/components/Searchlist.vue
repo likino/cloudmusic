@@ -45,12 +45,11 @@ export default {
   methods: {
     playMp3 (e) {
       var index = e.currentTarget.getAttribute('data-index')
-      return this.musics[index]
+      bus.currentData = this.musics[index]
+      bus.$emit('playMp3')
     }
   }
 }
-
-console.log(bus)
 </script>
 
 <style>
