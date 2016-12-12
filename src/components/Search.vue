@@ -1,26 +1,45 @@
 <template>
   <div class="search-box">
     <div class="search-bar">
-      <form class="search-outer">
+      <div class="search-outer">
         <div class="search-inner">
           <i class="iconfont icon-sousuo_sousuo"></i>
-          <input type="search" class="search-input" autocomplete="off" required :placeholder="msg">
+          <input v-model="msg" type="search" class="search-input" autocomplete="off" required :placeholder="placeholder">
         </div>
-      </form>
-      <a href="javascript:;" class="search-cancel">取消</a>
+      </div>
+      <a href="javascript:;" class="search-cancel" @click="search">搜索</a>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'search',
-    data () {
-      return {
-        msg: '搜索音乐'
-      }
+import axios from 'axios'
+import bus from '../bus.js'
+
+export default {
+  name: 'search',
+  data () {
+    return {
+      placeholder: '搜索音乐ID',
+      msg: '',
+      searchResult: ''
+    }
+  },
+  methods: {
+    search () {
+      axios.get('https://bird.ioliu.cn/netease', {
+        params: {
+          id: this.msg
+        }
+      }).then(function (response) {
+        bus.data = response.data.data.songs[0].name
+        console.log(bus)
+      }).catch(function (error) {
+        console.log(error)
+      })
     }
   }
+}
 </script>
 
 <style>
