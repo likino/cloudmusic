@@ -5,7 +5,7 @@
         <div class="search-outer">
           <div class="search-inner">
             <i class="iconfont icon-sousuo_sousuo"></i>
-            <input v-model="msg" type="search" class="search-input" autocomplete="off" required :placeholder="placeholder">
+            <input v-model.trim="msg" type="search" class="search-input" autocomplete="off" required :placeholder="placeholder" @keyup.enter="search">
           </div>
         </div>
         <a href="javascript:;" class="search-cancel" @click="search">搜索</a>
@@ -38,6 +38,10 @@ export default {
   },
   methods: {
     search () {
+      if (!this.msg) {
+        console.log('请输入搜索内容')
+        return
+      }
       axios({
         method: 'get',
         url: 'http://localhost:3000/search/' + this.msg
