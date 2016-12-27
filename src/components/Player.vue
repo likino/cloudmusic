@@ -48,10 +48,10 @@ export default {
   mounted () {
     bus.$on('playMp3', data => {
       this.isPlaying = true
-      this.mp3Name = bus.currentData.mp3Name
-      this.mp3Author = bus.currentData.mp3Author
+      this.mp3Name = bus.currentData.name
+      this.mp3Author = bus.currentData.artists[0].name
       this.mp3Url = bus.currentData.mp3Url
-      this.mp3Albumpic = bus.currentData.mp3Albumpic
+      this.mp3Albumpic = bus.currentData.album.blurPicUrl
     })
   }
 }

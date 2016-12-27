@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <search></search>
-    <searchlist></searchlist>
     <img src="./assets/logo.png" class="logo">
     <hello></hello>
     <player></player>
@@ -10,7 +9,6 @@
 
 <script>
 import Search from './components/Search'
-import Searchlist from './components/Searchlist'
 import Hello from './components/Hello'
 import Player from './components/Player'
 
@@ -18,7 +16,6 @@ export default {
   name: 'app',
   components: {
     Search,
-    Searchlist,
     Hello,
     Player
   }
