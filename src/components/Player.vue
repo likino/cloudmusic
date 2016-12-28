@@ -26,7 +26,7 @@ export default {
       mp3Name: '',
       mp3Author: '',
       mp3Url: '',
-      mp3Albumpic: ''
+      mp3Albumpic: require('../assets/logo_small.png')
     }
   },
   methods: {
@@ -45,13 +45,20 @@ export default {
       }
     }
   },
-  mounted () {
+  created () {
     bus.$on('playMp3', data => {
       this.isPlaying = true
       this.mp3Name = bus.currentData.name
       this.mp3Author = bus.currentData.artists[0].name
       this.mp3Url = bus.currentData.mp3Url
       this.mp3Albumpic = bus.currentData.album.blurPicUrl
+      // 延迟显示版权问题
+      setTimeout(function () {
+        let audio = document.getElementById('audio')
+        if (audio.error != null) {
+          window.alert('版权悲剧了:(')
+        }
+      }, 500)
     })
   }
 }
@@ -66,6 +73,7 @@ export default {
   padding: 5px 0;
   background-color: #f7f7fa;
   color: #888;
+  z-index: 999;
 }
 .player:before{
   content: " ";
@@ -95,6 +103,7 @@ export default {
 .mp3Textbox{
   margin-left: 5px;
   float:left;
+  width: 40%;
   text-align: left;
 }
 .mp3Textbox p{
@@ -111,6 +120,7 @@ export default {
   margin-right: 5px;
   float: right;
   margin-top: 8px;
+  width: 134px;
 }
 .btn-group i{
   margin: 0 10px;

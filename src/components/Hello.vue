@@ -21,6 +21,11 @@ export default {
 h1, h2 {
   font-weight: normal;
 }
+.hello {
+  position: fixed;
+  top: 223px;
+  width: 100%;
+}
 
 ul {
   list-style-type: none;

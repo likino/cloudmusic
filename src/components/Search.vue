@@ -44,7 +44,7 @@ export default {
       }
       axios({
         method: 'get',
-        url: 'http://localhost:3000/search/' + this.msg
+        url: '/search/' + this.msg
       }).then((response) => {
         this.musics = response.data
       }).catch((error) => {
@@ -55,7 +55,7 @@ export default {
       var id = e.currentTarget.getAttribute('data-id')
       axios({
         method: 'get',
-        url: 'http://localhost:3000/song/' + id
+        url: '/song/' + id
       }).then((response) => {
         console.log(response.data.songs[0])
         bus.currentData = response.data.songs[0]
@@ -73,6 +73,7 @@ export default {
   width:100%;
   position: fixed;
   top:0;
+  z-index: 999;
 }
 .search-bar{
   position: relative;
@@ -142,11 +143,13 @@ export default {
 }
 .cells {
   margin-top: 44px;
+  margin-bottom: 51px;
   background-color: #fff;
   line-height: 1.41176471;
   font-size: 14px;
   overflow: hidden;
   position: relative;
+  z-index: 998;
 }
 .cell {
     padding: 10px 15px;

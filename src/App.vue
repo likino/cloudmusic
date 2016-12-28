@@ -42,8 +42,11 @@ input {
   outline: none;
 }
 .logo{
-  margin-top: 50px;
-  width:20%;
+    position: fixed;
+    top: 142px;
+    margin: auto;
+    left: 0;
+    right: 0;
 }
 a{
   text-decoration: none;
