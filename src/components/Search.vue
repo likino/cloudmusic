@@ -57,7 +57,6 @@ export default {
         method: 'get',
         url: '/song/' + id
       }).then((response) => {
-        console.log(response.data.songs[0])
         bus.currentData = response.data.songs[0]
         bus.$emit('playMp3')
       }).catch((error) => {

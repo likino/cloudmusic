@@ -52,13 +52,11 @@ export default {
       this.mp3Author = bus.currentData.artists[0].name
       this.mp3Url = bus.currentData.mp3Url
       this.mp3Albumpic = bus.currentData.album.blurPicUrl
-      // 延迟显示版权问题
-      setTimeout(function () {
-        let audio = document.getElementById('audio')
-        if (audio.error != null) {
-          window.alert('版权悲剧了:(')
-        }
-      }, 500)
+      // 版权检测
+      let audio = document.getElementById('audio')
+      audio.onerror = function () {
+        window.alert('版权悲剧了:(')
+      }
     })
   }
 }
